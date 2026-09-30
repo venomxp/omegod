@@ -1,0 +1,193 @@
+/* Global smooth styling & scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.6);
+}
+
+/* Subtle TV Static Noise & Scanlines ("Tchach TV") */
+@keyframes tv-noise-anim {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -2%); }
+  20% { transform: translate(2%, 1%); }
+  30% { transform: translate(-1%, 2%); }
+  40% { transform: translate(1%, -1%); }
+  50% { transform: translate(-2%, 1%); }
+  60% { transform: translate(2%, -2%); }
+  70% { transform: translate(0, 2%); }
+  80% { transform: translate(-1%, -1%); }
+  90% { transform: translate(1%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes tv-scanline-anim {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.tv-static-bg {
+  position: relative;
+  background-color: #f1f5f9;
+  background-image: 
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(226, 232, 240, 0.9) 100%);
+}
+
+.dark .tv-static-bg {
+  background-color: #0b0d13;
+  background-image: 
+    radial-gradient(ellipse at center, rgba(22, 26, 36, 0.8) 0%, rgba(10, 11, 16, 0.98) 100%);
+}
+
+/* Subtle TV static noise overlay */
+.tv-static-noise {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='tvNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23tvNoise)'/%3E%3C/svg%3E");
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  animation: tv-noise-anim 0.2s steps(2) infinite;
+  z-index: 1;
+}
+
+.dark .tv-static-noise {
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+
+/* Subtle CRT TV Scanlines */
+.tv-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.035) 0px,
+    rgba(0, 0, 0, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 2;
+}
+
+.dark .tv-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Moving scan beam for authentic retro TV feel */
+.tv-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: tv-scanline-anim 6s linear infinite;
+  z-index: 2;
+}
+
+.dark .tv-beam {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+}
+
+/* Radar pulse animation for video matchmaking */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(0.88);
+    opacity: 0.8;
+  }
+}
+
+.animate-radar {
+  animation: radar-pulse 2.8s infinite ease-in-out;
+}
+
+/* 3D Globe & Stranger Matchmaking Animations */
+@keyframes globe-spin {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes avatar-float-1 {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-7px) scale(1.03); }
+}
+
+@keyframes avatar-float-2 {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(7px) scale(0.98); }
+}
+
+@keyframes avatar-float-3 {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+}
+
+@keyframes orbit-ring-glow {
+  0%, 100% { opacity: 0.45; filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4)); }
+  50% { opacity: 0.85; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+}
+
+.animate-globe-spin {
+  animation: globe-spin 18s linear infinite;
+}
+
+.animate-avatar-1 {
+  animation: avatar-float-1 3.8s ease-in-out infinite;
+}
+
+.animate-avatar-2 {
+  animation: avatar-float-2 4.2s ease-in-out infinite 0.6s;
+}
+
+.animate-avatar-3 {
+  animation: avatar-float-3 3.5s ease-in-out infinite 1.2s;
+}
+
+.animate-avatar-4 {
+  animation: avatar-float-1 4.5s ease-in-out infinite 1.8s;
+}
+
+.animate-avatar-5 {
+  animation: avatar-float-2 3.9s ease-in-out infinite 2.2s;
+}
+
+.animate-orbit-ring {
+  animation: orbit-ring-glow 3s ease-in-out infinite;
+}
+

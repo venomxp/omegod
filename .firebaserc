@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "falkomsite"
+  },
+  "targets": {
+    "falkomsite": {
+      "hosting": {
+        "live": [
+          "omegod-chat"
+        ]
+      }
+    }
+  }
+}

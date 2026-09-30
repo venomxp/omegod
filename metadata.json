@@ -1,0 +1,11 @@
+{
+  "name": "Remix Remix OmeGod - Random Video Chat",
+  "description": "OmeGod is a modern random video chat platform that allows you to connect with strangers from all over the world. It\u0027s anonymous, fast, and works on all your devices.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
